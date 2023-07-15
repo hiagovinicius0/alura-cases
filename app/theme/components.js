@@ -185,12 +185,9 @@ export function Image({ as, ...props }) {
     <Box as={tag} {...imageProps} />
   );
 }
-Image.defaultProps = {
-  styleSheet: {},
-};
 
 
-export function Input({ as, styleSheet, ...props }) {
+export function Input({ as, styleSheet = {}, ...props }) {
   const tag = 'input';
   const finalStyleSheet = {
     transition: 'all 0.2s ease-in-out',
@@ -216,11 +213,8 @@ export function Input({ as, styleSheet, ...props }) {
     <Text as={tag} styleSheet={finalStyleSheet} {...props} />
   );
 }
-Input.defaultProps = {
-  styleSheet: {},
-};
 
-export function Button({ as, styleSheet, ...props }) {
+export function Button({ as, styleSheet = {}, ...props }) {
   const {
     buttonVariant = 'primary',
     ...restStyleSheet
@@ -260,6 +254,4 @@ export function Button({ as, styleSheet, ...props }) {
     <Text as={tag} styleSheet={finalStyleSheet} {...props} />
   );
 }
-Button.defaultProps = {
-  styleSheet: {},
-};
+
