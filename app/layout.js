@@ -1,7 +1,9 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import Script from 'next/script'
+import { Open_Sans } from 'next/font/google'
+import GlobalStyle from './theme/GlobalStyle'
+import StyledJsxRegistry from './registry'
 
-const inter = Inter({ subsets: ['latin'] })
+const openSans = Open_Sans({ subsets: ['latin'], display: 'swap' })
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +13,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+      <Script async={true} src="https://www.googletagmanager.com/gtag/js?id=G-2QZDPX3BLK" />
+      <Script 
+        dangerouslySetInnerHTML={{
+          __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-2QZDPX3BLK');
+          `
+        }}
+      />
+      <body className={openSans.className}>
+			<StyledJsxRegistry>
+				<GlobalStyle />{children}
+			</StyledJsxRegistry>
+			</body>
     </html>
   )
 }
